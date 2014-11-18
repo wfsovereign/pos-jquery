@@ -36,8 +36,8 @@
       <file leaf-file-name="shopcart.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopcart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.464286" vertical-offset="114" max-vertical-offset="1064">
-              <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+            <state vertical-scroll-proportion="-8.142858" vertical-offset="114" max-vertical-offset="1102">
+              <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -78,12 +78,12 @@
       <file leaf-file-name="shopcartoutput.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/function/shopcartoutput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2051814" vertical-offset="2451" max-vertical-offset="3572">
-              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.11398964" vertical-offset="1410" max-vertical-offset="3287">
+              <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc;n#find_item_by_barcode#0" expanded="false" />
                 <element signature="e#887#1372#0" expanded="false" />
-                <marker date="1416285267785" expanded="true" signature="5757:5784" placeholder="..." />
+                <marker date="1416286566127" expanded="true" signature="5432:5459" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -141,8 +141,8 @@
         <option value="$PROJECT_DIR$/function/js.js" />
         <option value="$PROJECT_DIR$/js.html" />
         <option value="$PROJECT_DIR$/details.html" />
-        <option value="$PROJECT_DIR$/shopcart.html" />
         <option value="$PROJECT_DIR$/home.html" />
+        <option value="$PROJECT_DIR$/shopcart.html" />
         <option value="$PROJECT_DIR$/function/shopcartoutput.js" />
       </list>
     </option>
@@ -487,7 +487,7 @@
           <folding>
             <element signature="n#!!doc;n#find_item_by_barcode#0" expanded="false" />
             <element signature="e#887#1372#0" expanded="false" />
-            <marker date="1416285267785" expanded="true" signature="5757:5784" placeholder="..." />
+            <marker date="1416286566127" expanded="true" signature="5432:5459" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -785,14 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shopcart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.464286" vertical-offset="114" max-vertical-offset="1064">
-          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.7142856" vertical-offset="0" max-vertical-offset="893">
@@ -809,14 +801,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/shopcart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.142858" vertical-offset="114" max-vertical-offset="1102">
+          <caret line="18" column="51" selection-start-line="18" selection-start-column="51" selection-end-line="18" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/function/shopcartoutput.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2051814" vertical-offset="2451" max-vertical-offset="3572">
-          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.11398964" vertical-offset="1410" max-vertical-offset="3287">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc;n#find_item_by_barcode#0" expanded="false" />
             <element signature="e#887#1372#0" expanded="false" />
-            <marker date="1416285267785" expanded="true" signature="5757:5784" placeholder="..." />
+            <marker date="1416286566127" expanded="true" signature="5432:5459" placeholder="..." />
           </folding>
         </state>
       </provider>

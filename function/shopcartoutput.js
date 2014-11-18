@@ -54,6 +54,7 @@ function build_cart_items_from_inputs(){
 }
 
 
+
 function classify_by_category(commodity_list){
     if(commodity_list!=null){
         return _.chain(commodity_list).groupBy("category").map(function(value,key){
@@ -71,12 +72,12 @@ function classify_by_category(commodity_list){
 
 }
 
-function payment_output(){
-
-    var payment_string="";
-    payment_string = "<a href=''><button class='btn btn-primary btn-lg' >付款</button></a>";
-    return payment_string
-}
+//function payment_output(){
+//
+//    var payment_string="";
+//    payment_string = "<a href="details.html"><button class='btn btn-primary btn-lg' >付款</button></a>";
+//    return payment_string
+//}
 
 function price_string_handle(price){
     if(Math.ceil(price)>price){
@@ -99,22 +100,6 @@ function subtotal_string(){
     subtotal_string= price_string_handle(subtotal);
     return subtotal_string;
 }
-/*
-
-var tem  = build_cart_items_from_inputs();
-var tem2 = classify_by_category(tem);
-var tem3 = _.map(tem,function(value,key){
-    var category_title = key;
-    var commodity_list = value;
-    return {
-        category_title:category_title,
-        commodity_list:commodity_list
-    }
-
-});
-console.log(tem2);
-console.log(tem3[2].commodity_list[0]);
-*/
 
 
 
@@ -127,7 +112,7 @@ $(function(){
     $(".食品").append(commdity_table_mainbody_output("食品"));
 
     $(".subtotal").html(subtotal_string());
-    $(".payment").append(payment_output());
+    //$(".payment").append(payment_output());
 
 
 });
