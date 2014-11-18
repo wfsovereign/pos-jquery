@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script src="dist/js/jquery-1.8.0.min.js"></script>
+
+    <link href="dist/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="dist/js/bootstrap.min.js"></script>
+
+    <script src="model/fixtures.js"></script>
+    <script src="model/item.js"></script>
+    <script src="model/promotion.js"></script>
+    <script src="lib/underscore.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="function/js.js"></script>
+
+<div class="container ">
+    <div class="panel  panel-default">
+        <div class=" panel-heading" style="background-color: lightgrey"><h4 >商品列表</h4></div>
+        <div class="panel-body">
+            <table  class="table table-bordered text-center">
+                <thead class="purchase_commodity_list">
+                <tr >
+                    <td>名称</td>
+                    <td>单价（元）</td>
+                    <td>数量</td>
+                    <td>小计</td>
+                </tr>
+                </thead>
+                <tr >
+                    <td>水果</td>
+                    <td>6</td>
+                    <td><button type="button" class="btn btn-default">- </button><span class="">5</span> <button type="button" class=" btn btn-default ">+</button></td>
+                    <td><div class="btn-group ">
+                        <button type="button" class="btn btn-default">-</button>
+                        <span class="btn btn-default">30</span>
+                        <button type="button" class=" btn btn-default">+</button>
+                    </div></td>
+                </tr>
+            </table>
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-addon">.00</span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
