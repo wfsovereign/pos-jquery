@@ -31,6 +31,7 @@ function build_cart_items_from_inputs(){
     }).map(function(element){
         var item = find_item_by_barcode(element.barcode);
         return{
+            barcode:item.barcode,
             name:item.name,
             count:element.count,
             unit:item.unit,
@@ -56,7 +57,6 @@ function classify_by_category(commodity_list){
     }
 }
 
-
 $(function(){
     $(".purchase_commodity_list").append(purchase_commodity_list_frame_output());
     $(".shopcart_num").html(sessionStorage.getItem("shopcart_number"));
@@ -70,22 +70,97 @@ $(function(){
 
 
 });
-
 //
-//var tem = build_cart_items_from_inputs();
-////sessionStorage.setItem("purchase_commodity_list",JSON.stringify(tem));
-////var item = sessionStorage.getItem("purchase_commodity_list");
-//var items = classify_by_category(tem);
-//sessionStorage.setItem("purchase_commodity_list",JSON.stringify(items));
-//var us = JSON.parse(sessionStorage.getItem("purchase_commodity_list"));
-//console.log(us,"us");
-//console.log(items,"items");
-
-
-
 var purchase_commodity_list = build_cart_items_from_inputs();
 var purchase_classify_by_category =classify_by_category(purchase_commodity_list);
 sessionStorage.setItem("category_purchase_list",JSON.stringify(purchase_classify_by_category));
+var classify_commdotiy = JSON.parse(sessionStorage.getItem("category_purchase_list"));
+//classify_commdotiy[0].commodity_list[0].count=0;
+//console.log(classify_commdotiy);
+
+/*
+
+var bar ="ITEM000000";
+var cate = "饮料";
+var classify_commodity_list = JSON.parse(sessionStorage.getItem("category_purchase_list"));
+console.log(classify_commodity_list,"-------");
+for(var i=0; i<classify_commodity_list.length;i++){
+    if(classify_commodity_list[i].category_title ==cate){
+        for(var j=0;j<classify_commodity_list[i].commodity_list.length;j++){
+            if(classify_commodity_list[i].commodity_list[j].barcode == bar){
+                classify_commodity_list[i].commodity_list[j].count+=1;
+            }
+        }
+    }
+}*/
+
+/*
+var update_commdity_list = _.find(classify_commodity_list,function(classify_list) {
+    if (classify_list.category_title == cate) {
+        var tem = classify_list.commodity_list;
+        _.each(tem,function(t){
+            if(t.barcode ==bar){
+                t.count +=1;
+            }
+        });
+    }
+    return classify_commodity_list
+});*/
+
+/*
+var update_commodity = _.chain(classify_commodity_list).find(function(classify){
+    if(classify.category_title ==cate){
+        console.log('1');
+        return classify.commodity_list;
+    }
+}).find(function(commodity){
+    if(commodity.barcode == bar){
+        console.log('2');
+        commodity.count+=1;
+        return classify_commodity_list;
+    }
+}).value();
+console.log(update_commodity,'========');
+*/
+
+
+/*
+var update_commdity_list = _.find(classify_commodity_list,function(classify_list) {
+    if (classify_list.category_title == cate) {
+        var tem = classify_list.commodity_list;
+        return tem;
+    }
+});
+var tem = update_commdity_list.commodity_list;
+var update_count =_.find(tem,function(commodity) {
+
+    if (commodity.barcode == bar) {
+
+        commodity.count += 1;
+        return classify_commodity_list;
+    }
+});
+    console.log(update_count,"2")
+    console.log(update_commdity_list,"1");*/
+
+/*var update_commdity_list = _.chain(classify_commodity_list).find(function(classify_list){
+    if(classify_list.category_title ==cate){
+
+        var tem = classify_list.commodity_list;
+        return tem;
+    }
+}).find(function(commodity){
+    console.log(commodity,"++++++")
+    //console.log(commodity.barcode)
+    if(commodity.barcode ==bar){
+        console.log("2")
+        commodity.count +=1;
+        return classify_commodity_list;
+    }
+}).value();*/
+
+
+
 
 function commdity_table_mainbody_output(classify){
     var classify_commodity=JSON.parse(sessionStorage.getItem("category_purchase_list"));
@@ -103,15 +178,22 @@ function commdity_table_mainbody_output(classify){
                 "<tr ><td>" +commodity.name+
                 "</td><td>" +commodity.price+
                 "</td><td>" +commodity.unit+
-                "</td><td>" +"<div class='btn-group' ><button type='button' class='btn btn-default'>-</button><span class='btn btn-default'>"+
-                commodity.count+
-                "</span><button type='button' class= 'btn btn-default'>+</button></div>"+
+                "</td><td>" +"<div class='btn-group' ><button type='button' class='btn btn-default reduce' data-barcode = '"+commodity.barcode+
+                "'data-category = '"+commodity.category+"'>-</button><span class='btn btn-default'>"+commodity.count+
+                "</span><button type='button' class= 'btn btn-default raise' data-category='"+commodity.category+"' data-barcode='"+commodity.barcode+"'>+</button></div>"+
                 "</td><td>" +commodity.count*commodity.price+
                 "</td></tr>";
 
         });
     }
     return main_body_output;
+}
+
+function raise(){
+    var bar = $(this).data("barcode");
+    var cate = $(this).data("category");
+
+
 }
 
 function purchase_commodity_list_frame_output() {
@@ -130,7 +212,8 @@ function purchase_commodity_list_frame_output() {
         var table_list = [];
         var frame_number=classify_commdotiy.length;
         for(var i=0;i<frame_number;i++){
-                table_list[i]=table_frame_first+classify_commdotiy[i].category_title+table_frame_second+ classify_commdotiy[i].category_title+ table_frame_last;
+                table_list[i]=table_frame_first+classify_commdotiy[i].category_title+table_frame_second +
+                    classify_commdotiy[i].category_title+ table_frame_last;
         }
     }
     return  table_list
@@ -147,10 +230,11 @@ function subtotal_string(){
     return subtotal_string;
 }
 
+/*
 
-//function payment_output(){
-//
-//    var payment_string="";
-//    payment_string = "<a href="details.html"><button class='btn btn-primary btn-lg' >付款</button></a>";
-//    return payment_string
-//}
+function payment_output(){
+
+    var payment_string="";
+    payment_string = "<a href='"+"details.html"+"'><button class='btn btn-primary btn-lg' >付款</button></a>";
+    return payment_string
+}*/
