@@ -7,8 +7,17 @@ function find_item_by_barcode(barcode) {
     return _(loadAllItems()).findWhere({"barcode":barcode})
 }
 
+function price_string_handle(price){
+    if(Math.ceil(price)>price){
+        var price_result = "总计："+price+"0元";
+        return price_result
+    }else{
+        var price_result = "总计："+price+".00元";
+        return price_result
+    }
+}
+
 function build_cart_items_from_inputs(){
-    var items =loadAllItems();
     if(sessionStorage.getItem("barcodes") != null){
         var inputs_array = sessionStorage.getItem("barcodes").split(",");
     }else{
@@ -29,31 +38,8 @@ function build_cart_items_from_inputs(){
             price:item.price
         }
     }).value();
-    /*
-     var tem= _.groupBy(inputs_array,function(input){
-     return input;
-     });
-     var tem1= _.map(tem,function(value,key)
-     {
-     return {barcode:key,count:value.length}
-
-     });
-
-    var tem3= _.map(tem2,function(element){
-        var item = find_item_by_barcode(element.barcode);
-        return{
-            name:item.name,
-            count:element.count,
-            unit:item.unit,
-            category:item.category,
-            price:item.price
-        }
-
-    });*/
     return purchase_commodity_list;
 }
-
-
 
 function classify_by_category(commodity_list){
     if(commodity_list!=null){
@@ -68,39 +54,7 @@ function classify_by_category(commodity_list){
     }else{
         return null
     }
-
-
 }
-
-//function payment_output(){
-//
-//    var payment_string="";
-//    payment_string = "<a href="details.html"><button class='btn btn-primary btn-lg' >付款</button></a>";
-//    return payment_string
-//}
-
-function price_string_handle(price){
-    if(Math.ceil(price)>price){
-        var price_result = "总计："+price+"0元";
-        return price_result
-    }else{
-        var price_result = "总计："+price+".00元";
-        return price_result
-    }
-
-}
-
-function subtotal_string(){
-    var commodity_list = build_cart_items_from_inputs();
-    var subtotal = 0;
-    _.each(commodity_list,function(commodity){
-        subtotal = subtotal+commodity.price*commodity.count;
-    });
-    var subtotal_string;
-    subtotal_string= price_string_handle(subtotal);
-    return subtotal_string;
-}
-
 
 
 $(function(){
@@ -117,8 +71,24 @@ $(function(){
 
 });
 
+//
+//var tem = build_cart_items_from_inputs();
+////sessionStorage.setItem("purchase_commodity_list",JSON.stringify(tem));
+////var item = sessionStorage.getItem("purchase_commodity_list");
+//var items = classify_by_category(tem);
+//sessionStorage.setItem("purchase_commodity_list",JSON.stringify(items));
+//var us = JSON.parse(sessionStorage.getItem("purchase_commodity_list"));
+//console.log(us,"us");
+//console.log(items,"items");
+
+
+
+var purchase_commodity_list = build_cart_items_from_inputs();
+var purchase_classify_by_category =classify_by_category(purchase_commodity_list);
+sessionStorage.setItem("category_purchase_list",JSON.stringify(purchase_classify_by_category));
+
 function commdity_table_mainbody_output(classify){
-    var classify_commodity=get_classsify_commodity();
+    var classify_commodity=JSON.parse(sessionStorage.getItem("category_purchase_list"));
 
     var get_commodity_list_by_classify_name = _.find(classify_commodity,function(commodity){
         if(commodity.category_title == classify){
@@ -141,32 +111,11 @@ function commdity_table_mainbody_output(classify){
 
         });
     }
-
-    /*if(commodity_list_from_category !=null){
-
-        _.each(commodity_list_from_category,function(commodity){
-            main_body_output=main_body_output+
-                "<tr ><td>" +commodity.name+
-                "</td><td>" +commodity.price+
-                "</td><td>" +commodity.unit+
-                "</td><td>" +"<div class='btn-group' ><button type='button' class='btn btn-default'>-</button><span class='btn btn-default'>"+
-                commodity.count+
-                "</span><button type='button' class= 'btn btn-default'>+</button></div>"+
-                "</td><td>" +commodity.count*commodity.price+
-                "</td></tr>";
-
-        });
-    }*/
     return main_body_output;
 }
 
-function get_classsify_commodity(){
-    var purchase_commodity_list = build_cart_items_from_inputs();
-    return classify_by_category(purchase_commodity_list);
-}
-
 function purchase_commodity_list_frame_output() {
-    var classify_commdotiy = get_classsify_commodity();//classify_by_category(purchase_commodity_list);
+    var classify_commdotiy = JSON.parse(sessionStorage.getItem("category_purchase_list"));//classify_by_category(purchase_commodity_list);
     if(classify_commdotiy!=null){
         var table_frame_first="<div class= 'container'> <div class='panel  panel-default'>" +
             "<div class= 'panel-heading' style='background-color: lightgrey'><h4 >";
@@ -187,3 +136,21 @@ function purchase_commodity_list_frame_output() {
     return  table_list
 }
 
+function subtotal_string(){
+    var commodity_list = build_cart_items_from_inputs();
+    var subtotal = 0;
+    _.each(commodity_list,function(commodity){
+        subtotal = subtotal+commodity.price*commodity.count;
+    });
+    var subtotal_string;
+    subtotal_string= price_string_handle(subtotal);
+    return subtotal_string;
+}
+
+
+//function payment_output(){
+//
+//    var payment_string="";
+//    payment_string = "<a href="details.html"><button class='btn btn-primary btn-lg' >付款</button></a>";
+//    return payment_string
+//}
