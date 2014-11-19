@@ -122,9 +122,10 @@ function reduce(){
         }
     });
     if(judge_number >=0){
+        sessionStorage.setItem("commodity_cart_items",JSON.stringify(cart_items));
         sessionStorage.setItem("shopcart_number",parseInt(sessionStorage.getItem("shopcart_number"))-1);
-        var update_category_list = classify_by_category(cart_items);
-        sessionStorage.setItem("category_purchase_list",JSON.stringify(update_category_list));
+        //var update_category_list = classify_by_category(cart_items);
+        //sessionStorage.setItem("category_purchase_list",JSON.stringify(update_category_list));
         $("#"+commodity_name).html(num);
         $('#'+sub).html(subtotal);
         $(".subtotal").html(subtotal_string());
@@ -146,10 +147,11 @@ function raise(){
             subtotal = current_commodity_number*item.price;
         }
     });
-    if(current_commodity_number>=0){
+    if(current_commodity_number>0){
+        sessionStorage.setItem("commodity_cart_items",JSON.stringify(cart_items));
         sessionStorage.setItem("shopcart_number",parseInt(sessionStorage.getItem("shopcart_number"))+1);
-        var update_category_list = classify_by_category(cart_items);
-        sessionStorage.setItem("category_purchase_list",JSON.stringify(update_category_list));
+        //var update_category_list = classify_by_category(cart_items);
+        //sessionStorage.setItem("category_purchase_list",JSON.stringify(update_category_list));
         $("#"+commodity_name).html(current_commodity_number);
         $('#'+sub).html(subtotal);
         $(".subtotal").html(subtotal_string());

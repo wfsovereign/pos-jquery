@@ -9,56 +9,48 @@ $(function(){
    // $(".promotionlist").append(promotion_commodity_output());
 });
 
-var cart_items =JSON.parse(sessionStorage.getItem("commodity_cart_items"));
-function main_body_output(){
+function commodity_output(){
+    var commodity_string="";
+    _.each(cart_items,function(item){
+        commodity_string=commodity_string+
+            "<tr ><td>" +item.category+
+            "</td><td>" +item.name+
+            "</td><td>" +item.price+
+            "</td><td>" +item.unit+
+            "</td><td>" +item.count+
+            "</td><td>" +item.count*item.price+
+            "</td></tr>";
+    });
+    return commodity_string;
 
-//    var mainbody_string;
-//    mainbody_string="";
-//    _.each(cart_items,function(item){
-//        mainbody_string=mainbody_string+
-//            "<tr><td>" +item.category+
-//            "</td><td>" +item.name+
-//            "</td><td>" +item.price+
-//            "</td><td>" +item.unit+
-//            "</td><td>" +item.count+
-//            "</td><td>" +item.count*item.price+
-//            "</td></tr>";//<input type="button" class="btn btn-default text-center" value="+" >
-//    });
-//    return mainbody_string;
+}
+var cart_items =JSON.parse(sessionStorage.getItem("commodity_cart_items"));
+console.log(cart_items)
+function judge_decimal(integer){
+    return (Math.ceil(integer) > integer)
+}
+
+function postfix(value){
+    if(judge_decimal(value)){
+
+        return (value+"0(元)")
+    }else{
+        return (value+".00(元)")
+    }
+}
+
+function get_subtotal_str_before_promotion(item){
+
+}
+
+function main_body_output(){
     if(judge_exist_promotion_commodity()==false){
         var mainbody_string;
-        mainbody_string="";
-        _.each(cart_items,function(item){
-            mainbody_string=mainbody_string+
-                "<tr ><td>" +item.category+
-                "</td><td>" +item.name+
-                "</td><td>" +item.price+
-                "</td><td>" +item.unit+
-                "</td><td>" +item.count+
-                "</td><td>" +item.count*item.price+
-                "</td></tr>";//<input type="button" class="btn btn-default text-center" value="+" >
-        });
+        mainbody_string=commodity_output();
+
         return mainbody_string;
     }else{
         $(".details").append(promotion_commodity_frame_output());
-
-        var body_string;
-        body_string="";
-        _.each(cart_items,function(item){
-            body_string=body_string+
-                "<tr ><td>" +item.category+
-                "</td><td>" +item.name+
-                "</td><td>" +item.price+
-                "</td><td>" +item.unit+
-                "</td><td>" +item.count+
-                "</td><td>" +item.count*item.price+
-                "</td></tr>";//<input type="button" class="btn btn-default text-center" value="+" >
-        });
-        $(".promotionlist").append(promotion_commodity_output());
-        return body_string;
-    }
-    /*else{
-
         _.each(cart_items,function(item){
             add_preferential_information_to_item(item);
         });
@@ -67,21 +59,35 @@ function main_body_output(){
                 item.givecount = Math.floor(item.count/3)
             }
         });
-
-        var mainbody_string;
-        mainbody_string="";
         _.each(cart_items,function(item){
-            mainbody_string=mainbody_string+
+            if(item.preference_information != undefined){
+                item.subtotal = item.count*item.price;
+                item.subtotal_before_promotion = (item.count-item.givecount)*item.price;
+            }else{
+                item.subtotal = item.count*item.price;
+            }
+        });
+
+        var body_string;
+        body_string="";
+        _.each(cart_items,function(item){
+            if(item.type !=undefined){
+
+            }
+        });
+        _.each(cart_items,function(item){
+            body_string=body_string+
                 "<tr ><td>" +item.category+
                 "</td><td>" +item.name+
                 "</td><td>" +item.price+
                 "</td><td>" +item.unit+
                 "</td><td>" +item.count+
                 "</td><td>" +item.count*item.price+
-                "</td></tr>";//<input type="button" class="btn btn-default text-center" value="+" >
+                "</td></tr>";
         });
-        return mainbody_string;
-    }*/
+        $(".promotionlist").append(promotion_commodity_output());
+        return body_string;
+    }
 
 }
 
@@ -95,23 +101,11 @@ function promotion_commodity_frame_output(){
 
     return mainbody_strings;
 }
-//    var mainbody_string="";
-//    mainbody_string = mainbody_string+"<div class= 'panel-heading' style='background-color: lightgrey'><h3 class='text-left'>赠送商品</h3></div>"+
-//        "<div class='panel-body'><table  class='table table-bordered text-center'><thead class='items_list' >"+
-//           " <tr ><td class='col-md-2'>分类</td><td class='col-md-3'>名称</td><td class='col-md-2'>数量</td>"+
-//           " </tr></thead></table></div>";
 
 
 
 function promotion_commodity_output(){
-    _.each(cart_items,function(item){
-        add_preferential_information_to_item(item);
-    });
-    _.each(cart_items,function(item){
-        if(item.preference_information =='BUY_TWO_GET_ONE_FREE'){
-            item.givecount = Math.floor(item.count/3)
-        }
-    });
+
     var mainbody_strings="";
     _.each(cart_items,function(item){
         if(item.givecount!= undefined &&item.givecount!=0){
@@ -119,21 +113,13 @@ function promotion_commodity_output(){
                 "<tr ><td>" +item.category+
                 "</td><td>" +item.name+
                 "</td><td>" +item.givecount+
-                "</td></tr>";//<input type="button" class="btn btn-default text-center" value="+" >
+                "</td></tr>";
         }
     });
     return mainbody_strings;
 }
 
 
-function postfix(value){
-    if(judge_decimal(value)){
-
-        return (value+"0(元)")
-    }else{
-        return (value+".00(元)")
-    }
-}
 
 
 function get_subtotal_string_of_have_givecount(){
