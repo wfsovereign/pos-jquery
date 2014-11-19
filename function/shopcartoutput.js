@@ -64,16 +64,12 @@ $(function(){
     $(".饮料").append(commdity_table_mainbody_output("饮料"));
     $(".生活用品").append(commdity_table_mainbody_output("生活用品"));
     $(".食品").append(commdity_table_mainbody_output("食品"));
-
     $(".subtotal").html(subtotal_string());
     $(".raise").on('click',raise);
     $(".reduce").on('click',reduce);
     //$(".payment").append(payment_output());
-
-
 });
 
-//var purchase_commodity_list = build_cart_items_from_inputs();
 var cart_items = build_cart_items_from_inputs();
 var purchase_classify_by_category =classify_by_category(build_cart_items_from_inputs());
 sessionStorage.setItem("commodity_cart_items",JSON.stringify(cart_items));
@@ -82,7 +78,6 @@ sessionStorage.setItem("category_purchase_list",JSON.stringify(purchase_classify
 
 function commdity_table_mainbody_output(classify){
     var classify_commodity=JSON.parse(sessionStorage.getItem("category_purchase_list"));
-
     var get_commodity_list_by_classify_name = _.find(classify_commodity,function(commodity){
         if(commodity.category_title == classify){
             return commodity.commodity_list;
@@ -101,12 +96,10 @@ function commdity_table_mainbody_output(classify){
                 "</span><input type='button' class='btn btn-default raise'  value='+' data-category='"+commodity.category+"' data-name='"+commodity.name+"' data-barcode='"+commodity.barcode+"'></div>"+
                 "</td><td id='"+commodity.name+commodity.category+"'>" +commodity.count*commodity.price+
                 "</td></tr>";//<input type="button" class="btn btn-default text-center" value="+" >
-
         });
     }
     return main_body_output;
 }
-
 
 
 function reduce(){
@@ -115,7 +108,6 @@ function reduce(){
     var commodity_name = $(this).data("name");
     var category_name = $(this).data("category");
     var sub = commodity_name+category_name;
-
     _.each(cart_items,function(item){
         if(item.barcode == bar ){
             if(item.count>0){
@@ -127,10 +119,8 @@ function reduce(){
             }else{
                 judge_number-=1;
             }
-
         }
     });
-    console.log(judge_number)
     if(judge_number >=0){
         sessionStorage.setItem("shopcart_number",parseInt(sessionStorage.getItem("shopcart_number"))-1);
         var update_category_list = classify_by_category(cart_items);
@@ -142,6 +132,7 @@ function reduce(){
     }
 
 }
+
 function raise(){
     var current_commodity_number= 0,subtotal=0;
     var bar = $(this).data("barcode");
@@ -173,11 +164,12 @@ function purchase_commodity_list_frame_output() {
             "<div class= 'panel-heading' style='background-color: lightgrey'><h4 >";
         var table_frame_second ="</h4></div> <div class='panel-body'><table  class='table table-bordered text-center'>" +
             "<thead class=";
-        var table_frame_last = "><tr ><td>名称</td>" +
-        "<td>单价（元）</td>" +
-        "<td>单位</td>" +
-        "<td>数量</td>" +
-        "<td>小计</td>" +
+        var table_frame_last = "><tr >" +
+        "<td class='col-md-2'>名称</td>" +
+        "<td class='col-md-2'>单价（元）</td>" +
+        "<td class='col-md-1'>单位</td>" +
+        "<td class='col-md-3'>数量</td>" +
+        "<td class='col-md-1'>小计</td>" +
         "</tr></thead></table></div></div></div>";
         var table_list = [];
         var frame_number=classify_commdotiy.length;
@@ -189,10 +181,7 @@ function purchase_commodity_list_frame_output() {
     return  table_list
 }
 
-
-
 function subtotal_string(){
-    //var commodity_list = build_cart_items_from_inputs();
     var subtotal = 0;
     _.each(cart_items,function(commodity){
         subtotal = subtotal+commodity.price*commodity.count;
