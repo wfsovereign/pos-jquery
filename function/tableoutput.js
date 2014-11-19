@@ -6,12 +6,12 @@ $(document).ready(function(){
     $(".items_list").append(table_output());
     $(".add").on('click',storage_bar)
 });
+
 var inputs=[];
 var shopcart_num=0;
 localStorage.setItem("shopcart_number",0);
+
 function storage_bar(){
-   // localStorage.setItem("input_list",[]);
-    //var inp_list =localStorage.getItem("input_list");
     inputs.push($(this).data("barcode"));
     shopcart_num+=1;
     sessionStorage.setItem("shopcart_number",shopcart_num);

@@ -13,6 +13,11 @@
     <script src="lib/underscore.js"></script>
     <meta charset="UTF-8">
     <title></title>
+    <script>
+//        $(function(){
+//            $(".thead")
+//        })
+    </script>
 </head>
 <body>
 <script src="function/js.js"></script>
@@ -23,23 +28,14 @@
         <div class="panel-body">
             <table  class="table table-bordered text-center">
                 <thead class="purchase_commodity_list">
-                <tr >
-                    <td>名称</td>
+                <tr class="thead">
+                    <td >名称</td>
                     <td>单价（元）</td>
                     <td>数量</td>
                     <td>小计</td>
                 </tr>
                 </thead>
-                <tr >
-                    <td>水果</td>
-                    <td>6</td>
-                    <td><button type="button" class="btn btn-default">- </button><span class="">5</span> <button type="button" class=" btn btn-default ">+</button></td>
-                    <td><div class="btn-group ">
-                        <button type="button" class="btn btn-default">-</button>
-                        <span class="btn btn-default">30</span>
-                        <button type="button" class=" btn btn-default">+</button>
-                    </div></td>
-                </tr>
+
             </table>
             <div class="input-group">
                 <input type="text" class="form-control">
@@ -48,5 +44,33 @@
         </div>
     </div>
 </div>
+
+<div style=" text-align: center" >
+<input type="button" class="btn btn-default text-center" value="+" ></div>
+<!--
+
+<tr ><td> +commodity.name+
+    </td><td> +commodity.price+
+    </td><td> +commodity.unit+
+    </td><td> +
+    <div class='btn-group' >
+        <button type='button' class='btn btn-default reduce' data-barcode = '"+commodity.barcode+'data-category = '"+commodity.category+"'>-</button>
+        <span class='btn btn-default'>+commodity.count+</span>
+        <button type='button' class= 'btn btn-default raise' data-category='"+commodity.category+"' data-barcode='"+commodity.barcode+"'>+</button>
+    </div>"+
+    </td><td> +commodity.count*commodity.price+
+    </td></tr>
+-->
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

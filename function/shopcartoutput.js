@@ -66,100 +66,18 @@ $(function(){
     $(".食品").append(commdity_table_mainbody_output("食品"));
 
     $(".subtotal").html(subtotal_string());
+    $(".raise").on('click',raise);
+    $(".reduce").on('click',reduce);
     //$(".payment").append(payment_output());
 
 
 });
-//
-var purchase_commodity_list = build_cart_items_from_inputs();
-var purchase_classify_by_category =classify_by_category(purchase_commodity_list);
+
+//var purchase_commodity_list = build_cart_items_from_inputs();
+var cart_items = build_cart_items_from_inputs();
+var purchase_classify_by_category =classify_by_category(build_cart_items_from_inputs());
+sessionStorage.setItem("commodity_cart_items",JSON.stringify(cart_items));
 sessionStorage.setItem("category_purchase_list",JSON.stringify(purchase_classify_by_category));
-var classify_commdotiy = JSON.parse(sessionStorage.getItem("category_purchase_list"));
-//classify_commdotiy[0].commodity_list[0].count=0;
-//console.log(classify_commdotiy);
-
-/*
-
-var bar ="ITEM000000";
-var cate = "饮料";
-var classify_commodity_list = JSON.parse(sessionStorage.getItem("category_purchase_list"));
-console.log(classify_commodity_list,"-------");
-for(var i=0; i<classify_commodity_list.length;i++){
-    if(classify_commodity_list[i].category_title ==cate){
-        for(var j=0;j<classify_commodity_list[i].commodity_list.length;j++){
-            if(classify_commodity_list[i].commodity_list[j].barcode == bar){
-                classify_commodity_list[i].commodity_list[j].count+=1;
-            }
-        }
-    }
-}*/
-
-/*
-var update_commdity_list = _.find(classify_commodity_list,function(classify_list) {
-    if (classify_list.category_title == cate) {
-        var tem = classify_list.commodity_list;
-        _.each(tem,function(t){
-            if(t.barcode ==bar){
-                t.count +=1;
-            }
-        });
-    }
-    return classify_commodity_list
-});*/
-
-/*
-var update_commodity = _.chain(classify_commodity_list).find(function(classify){
-    if(classify.category_title ==cate){
-        console.log('1');
-        return classify.commodity_list;
-    }
-}).find(function(commodity){
-    if(commodity.barcode == bar){
-        console.log('2');
-        commodity.count+=1;
-        return classify_commodity_list;
-    }
-}).value();
-console.log(update_commodity,'========');
-*/
-
-
-/*
-var update_commdity_list = _.find(classify_commodity_list,function(classify_list) {
-    if (classify_list.category_title == cate) {
-        var tem = classify_list.commodity_list;
-        return tem;
-    }
-});
-var tem = update_commdity_list.commodity_list;
-var update_count =_.find(tem,function(commodity) {
-
-    if (commodity.barcode == bar) {
-
-        commodity.count += 1;
-        return classify_commodity_list;
-    }
-});
-    console.log(update_count,"2")
-    console.log(update_commdity_list,"1");*/
-
-/*var update_commdity_list = _.chain(classify_commodity_list).find(function(classify_list){
-    if(classify_list.category_title ==cate){
-
-        var tem = classify_list.commodity_list;
-        return tem;
-    }
-}).find(function(commodity){
-    console.log(commodity,"++++++")
-    //console.log(commodity.barcode)
-    if(commodity.barcode ==bar){
-        console.log("2")
-        commodity.count +=1;
-        return classify_commodity_list;
-    }
-}).value();*/
-
-
 
 
 function commdity_table_mainbody_output(classify){
@@ -178,22 +96,74 @@ function commdity_table_mainbody_output(classify){
                 "<tr ><td>" +commodity.name+
                 "</td><td>" +commodity.price+
                 "</td><td>" +commodity.unit+
-                "</td><td>" +"<div class='btn-group' ><button type='button' class='btn btn-default reduce' data-barcode = '"+commodity.barcode+
-                "'data-category = '"+commodity.category+"'>-</button><span class='btn btn-default'>"+commodity.count+
-                "</span><button type='button' class= 'btn btn-default raise' data-category='"+commodity.category+"' data-barcode='"+commodity.barcode+"'>+</button></div>"+
-                "</td><td>" +commodity.count*commodity.price+
-                "</td></tr>";
+                "</td><td>" +"<div class='btn-group ' ><input type='button' class='btn btn-default reduce'  value='-' data-name='"+commodity.name+"' data-barcode = '"+commodity.barcode+
+                "'data-category = '"+commodity.category+"'><span class='btn btn-default number ' id='"+commodity.name+"'>"+commodity.count+
+                "</span><input type='button' class='btn btn-default raise'  value='+' data-category='"+commodity.category+"' data-name='"+commodity.name+"' data-barcode='"+commodity.barcode+"'></div>"+
+                "</td><td id='"+commodity.name+commodity.category+"'>" +commodity.count*commodity.price+
+                "</td></tr>";//<input type="button" class="btn btn-default text-center" value="+" >
 
         });
     }
     return main_body_output;
 }
 
-function raise(){
+
+
+function reduce(){
+    var num= 0,subtotal= 0,judge_number =0;
     var bar = $(this).data("barcode");
-    var cate = $(this).data("category");
+    var commodity_name = $(this).data("name");
+    var category_name = $(this).data("category");
+    var sub = commodity_name+category_name;
 
+    _.each(cart_items,function(item){
+        if(item.barcode == bar ){
+            if(item.count>0){
+                item.count -=1;
+                num = item.count;
+                judge_number =num;
+                subtotal = num*item.price;
+                console.log(judge_number)
+            }else{
+                judge_number-=1;
+            }
 
+        }
+    });
+    console.log(judge_number)
+    if(judge_number >=0){
+        sessionStorage.setItem("shopcart_number",parseInt(sessionStorage.getItem("shopcart_number"))-1);
+        var update_category_list = classify_by_category(cart_items);
+        sessionStorage.setItem("category_purchase_list",JSON.stringify(update_category_list));
+        $("#"+commodity_name).html(num);
+        $('#'+sub).html(subtotal);
+        $(".subtotal").html(subtotal_string());
+        $(".shopcart_num").html(sessionStorage.getItem("shopcart_number"));
+    }
+
+}
+function raise(){
+    var current_commodity_number= 0,subtotal=0;
+    var bar = $(this).data("barcode");
+    var commodity_name = $(this).data("name");
+    var category_name = $(this).data("category");
+    var sub = commodity_name+category_name;
+    _.each(cart_items,function(item){
+        if(item.barcode == bar){
+            item.count +=1;
+            current_commodity_number = item.count;
+            subtotal = current_commodity_number*item.price;
+        }
+    });
+    if(current_commodity_number>=0){
+        sessionStorage.setItem("shopcart_number",parseInt(sessionStorage.getItem("shopcart_number"))+1);
+        var update_category_list = classify_by_category(cart_items);
+        sessionStorage.setItem("category_purchase_list",JSON.stringify(update_category_list));
+        $("#"+commodity_name).html(current_commodity_number);
+        $('#'+sub).html(subtotal);
+        $(".subtotal").html(subtotal_string());
+        $(".shopcart_num").html(sessionStorage.getItem("shopcart_number"));
+    }
 }
 
 function purchase_commodity_list_frame_output() {
@@ -219,10 +189,12 @@ function purchase_commodity_list_frame_output() {
     return  table_list
 }
 
+
+
 function subtotal_string(){
-    var commodity_list = build_cart_items_from_inputs();
+    //var commodity_list = build_cart_items_from_inputs();
     var subtotal = 0;
-    _.each(commodity_list,function(commodity){
+    _.each(cart_items,function(commodity){
         subtotal = subtotal+commodity.price*commodity.count;
     });
     var subtotal_string;

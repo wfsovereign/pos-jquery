@@ -26,7 +26,7 @@
       <file leaf-file-name="itemlist.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/itemlist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-44.785713" vertical-offset="0" max-vertical-offset="1444">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="1444">
               <caret line="66" column="48" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding />
             </state>
@@ -36,8 +36,8 @@
       <file leaf-file-name="shopcart.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shopcart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.535714" vertical-offset="152" max-vertical-offset="1102">
-              <caret line="25" column="100" selection-start-line="25" selection-start-column="100" selection-end-line="25" selection-end-column="100" />
+            <state vertical-scroll-proportion="-12.892858" vertical-offset="152" max-vertical-offset="1102">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -46,11 +46,9 @@
       <file leaf-file-name="js.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.178572" vertical-offset="146" max-vertical-offset="1083">
-              <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1539">
+              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,8 +66,8 @@
       <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.821428" vertical-offset="19" max-vertical-offset="969">
-              <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
+            <state vertical-scroll-proportion="-13.571428" vertical-offset="0" max-vertical-offset="969">
+              <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -78,11 +76,10 @@
       <file leaf-file-name="shopcartoutput.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/function/shopcartoutput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.72110283" vertical-offset="3017" max-vertical-offset="4636">
-              <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5274611" vertical-offset="3177" max-vertical-offset="4142">
+              <caret line="194" column="58" selection-start-line="194" selection-start-column="58" selection-end-line="194" selection-end-column="58" />
               <folding>
-                <element signature="n#!!doc;n#find_item_by_barcode#0" expanded="false" />
-                <marker date="1416301234195" expanded="true" signature="6623:6650" placeholder="..." />
+                <marker date="1416365230327" expanded="false" signature="6624:6651" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -101,8 +98,8 @@
       <file leaf-file-name="tableoutput.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/function/tableoutput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="760">
-              <caret line="14" column="39" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="760">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -135,12 +132,12 @@
         <option value="$PROJECT_DIR$/model/item.js" />
         <option value="$PROJECT_DIR$/model/tableoutput.js" />
         <option value="$PROJECT_DIR$/itemlist.html" />
-        <option value="$PROJECT_DIR$/function/tableoutput.js" />
         <option value="$PROJECT_DIR$/ts.html" />
         <option value="$PROJECT_DIR$/function/js.js" />
-        <option value="$PROJECT_DIR$/js.html" />
         <option value="$PROJECT_DIR$/details.html" />
         <option value="$PROJECT_DIR$/home.html" />
+        <option value="$PROJECT_DIR$/function/tableoutput.js" />
+        <option value="$PROJECT_DIR$/js.html" />
         <option value="$PROJECT_DIR$/shopcart.html" />
         <option value="$PROJECT_DIR$/function/shopcartoutput.js" />
       </list>
@@ -484,8 +481,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="171">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc;n#find_item_by_barcode#0" expanded="false" />
-            <marker date="1416301234195" expanded="true" signature="6623:6650" placeholder="..." />
+            <marker date="1416365230327" expanded="false" signature="6624:6651" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -738,7 +734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.02154195" vertical-offset="0" max-vertical-offset="882">
           <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,25 +741,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="190">
           <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#46#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.178572" vertical-offset="146" max-vertical-offset="1083">
-          <caret line="33" column="23" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/itemlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-44.785713" vertical-offset="0" max-vertical-offset="1444">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1254" max-vertical-offset="1444">
           <caret line="66" column="48" selection-start-line="66" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding />
         </state>
@@ -778,6 +760,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1539">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/function/tableoutput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="760">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shopcart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.892858" vertical-offset="152" max-vertical-offset="1102">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-23.071428" vertical-offset="0" max-vertical-offset="893">
@@ -786,37 +792,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/function/tableoutput.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="760">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shopcart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.535714" vertical-offset="152" max-vertical-offset="1102">
-          <caret line="25" column="100" selection-start-line="25" selection-start-column="100" selection-end-line="25" selection-end-column="100" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.821428" vertical-offset="19" max-vertical-offset="969">
-          <caret line="14" column="60" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
+        <state vertical-scroll-proportion="-13.571428" vertical-offset="0" max-vertical-offset="969">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/function/shopcartoutput.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.72110283" vertical-offset="3017" max-vertical-offset="4636">
-          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5274611" vertical-offset="3177" max-vertical-offset="4142">
+          <caret line="194" column="58" selection-start-line="194" selection-start-column="58" selection-end-line="194" selection-end-column="58" />
           <folding>
-            <element signature="n#!!doc;n#find_item_by_barcode#0" expanded="false" />
-            <marker date="1416301234195" expanded="true" signature="6623:6650" placeholder="..." />
+            <marker date="1416365230327" expanded="false" signature="6624:6651" placeholder="..." />
           </folding>
         </state>
       </provider>
