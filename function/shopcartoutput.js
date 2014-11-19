@@ -71,9 +71,9 @@ $(function(){
 });
 
 var cart_items = build_cart_items_from_inputs();
-var purchase_classify_by_category =classify_by_category(build_cart_items_from_inputs());
+//var purchase_classify_by_category =classify_by_category(build_cart_items_from_inputs());
 sessionStorage.setItem("commodity_cart_items",JSON.stringify(cart_items));
-sessionStorage.setItem("category_purchase_list",JSON.stringify(purchase_classify_by_category));
+//sessionStorage.setItem("category_purchase_list",JSON.stringify(purchase_classify_by_category));
 
 
 function commdity_table_mainbody_output(classify){
@@ -124,7 +124,7 @@ function reduce(){
     if(judge_number >=0){
         sessionStorage.setItem("commodity_cart_items",JSON.stringify(cart_items));
         sessionStorage.setItem("shopcart_number",parseInt(sessionStorage.getItem("shopcart_number"))-1);
-        //var update_category_list = classify_by_category(cart_items);
+        //var update_category_list = classify_by_category(cart_items);                  // this is error
         //sessionStorage.setItem("category_purchase_list",JSON.stringify(update_category_list));
         $("#"+commodity_name).html(num);
         $('#'+sub).html(subtotal);
