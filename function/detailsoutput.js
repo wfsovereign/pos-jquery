@@ -1,6 +1,10 @@
 /**
  * Created by wfsovereign on 14-11-19.
  */
+var cart_items =JSON.parse(sessionStorage.getItem("commodity_cart_items"));
+
+
+
 
 $(function(){
     $(".commodity_list").append(main_body_output());
@@ -9,7 +13,84 @@ $(function(){
    // $(".promotionlist").append(promotion_commodity_output());
 });
 
+
+function main_body_output(){
+    if(judge_exist_promotion_commodity()==false){
+        var mainbody_string;
+        mainbody_string=commodity_output();
+        $(".subtotal").html(subtotal_string());
+
+        return mainbody_string;
+    }else{
+        $(".details").append(promotion_commodity_frame_output());
+        _.each(cart_items,function(item){
+            add_preferential_information_to_item(item);
+        });
+        _.each(cart_items,function(item){
+            if(item.preference_information =='BUY_TWO_GET_ONE_FREE'){
+                item.givecount = Math.floor(item.count/3)
+            }
+        });
+        _.each(cart_items,function(item){
+            if(item.preference_information != undefined){
+                item.subtotal = item.count*item.price;
+                item.subtotal_after_promotion = (item.count-item.givecount)*item.price;
+            }else{
+                item.subtotal = item.count*item.price;
+            }
+        });
+        _.each(cart_items,function(item){
+            if(item.givecount>0){
+                item.subtotalstr = postfix_to_subtotal_after_promotion(item);
+            }else{
+                item.subtotalstr = postfix(item.subtotal);
+            }
+        });
+
+        var body_string;
+        body_string="";
+
+        _.each(cart_items,function(item){
+            if(item.givecount>0){
+                body_string=body_string+
+                    "<tr ><td>" +item.category+
+                    "</td><td>" +item.name+
+                    "</td><td>" +item.price+
+                    "</td><td>" +item.unit+
+                    "</td><td>" +item.count+
+                    "</td><td>" +item.subtotalstr+
+                    "</td></tr>";
+            }else if(item.count>0){
+                body_string=body_string+
+                    "<tr ><td>" +item.category+
+                    "</td><td>" +item.name+
+                    "</td><td>" +item.price+
+                    "</td><td>" +item.unit+
+                    "</td><td>" +item.count+
+                    "</td><td>" +item.subtotalstr+
+                    "</td></tr>";
+            }
+
+        });
+        $(".promotionlist").append(promotion_commodity_output());
+        $(".subtotal").html(subtotal_string());
+        console.log(judge_exist_savemoney() )
+        if(judge_exist_savemoney() ==true){
+            $(".savemoney").html(savemoney_string());
+            $(".actualpayment").html(actualpayment_string());
+        }
+        return body_string;
+    }
+
+}
+
+
+
 function commodity_output(){
+    _.each(cart_items,function(item){
+        item.subtotal = item.count*item.price;
+        item.subtotalstr = postfix(item.subtotal);
+    });
     var commodity_string="";
     _.each(cart_items,function(item){
         commodity_string=commodity_string+
@@ -18,13 +99,12 @@ function commodity_output(){
             "</td><td>" +item.price+
             "</td><td>" +item.unit+
             "</td><td>" +item.count+
-            "</td><td>" +item.count*item.price+
+            "</td><td>" +item.subtotalstr+
             "</td></tr>";
     });
     return commodity_string;
-
 }
-var cart_items =JSON.parse(sessionStorage.getItem("commodity_cart_items"));
+
 
 function judge_decimal(integer){
     return (Math.ceil(integer) > integer)
@@ -80,11 +160,6 @@ function actualpayment_string(){
 
 function judge_exist_savemoney(){
     var judge_value;
-   /* judge_value = _.find(cart_items,function(item){
-        if(item.givecount > 0){
-            return true
-        }
-    });*/
      _.each(cart_items,function(item){
         if(item.givecount>0){
             judge_value = true
@@ -92,75 +167,8 @@ function judge_exist_savemoney(){
     });
     return judge_value
 }
-function main_body_output(){
-    if(judge_exist_promotion_commodity()==false){
-        var mainbody_string;
-        mainbody_string=commodity_output();
-        $(".subtotal").html(subtotal_string());
 
-        return mainbody_string;
-    }else{
-        $(".details").append(promotion_commodity_frame_output());
-        _.each(cart_items,function(item){
-            add_preferential_information_to_item(item);
-        });
-        _.each(cart_items,function(item){
-            if(item.preference_information =='BUY_TWO_GET_ONE_FREE'){
-                item.givecount = Math.floor(item.count/3)
-            }
-        });
-        _.each(cart_items,function(item){
-            if(item.preference_information != undefined){
-                item.subtotal = item.count*item.price;
-                item.subtotal_after_promotion = (item.count-item.givecount)*item.price;
-            }else{
-                item.subtotal = item.count*item.price;
-            }
-        });
-        _.each(cart_items,function(item){
-            if(item.givecount>0){
-                item.subtotalstr = postfix_to_subtotal_after_promotion(item);
-            }else{
-                item.subtotalstr = postfix(item.subtotal);
-            }
-        })
 
-        var body_string;
-        body_string="";
-
-        _.each(cart_items,function(item){
-            if(item.givecount>0){
-                body_string=body_string+
-                    "<tr ><td>" +item.category+
-                    "</td><td>" +item.name+
-                    "</td><td>" +item.price+
-                    "</td><td>" +item.unit+
-                    "</td><td>" +item.count+
-                    "</td><td>" +item.subtotalstr+
-                    "</td></tr>";
-            }else if(item.count>0){
-                body_string=body_string+
-                    "<tr ><td>" +item.category+
-                    "</td><td>" +item.name+
-                    "</td><td>" +item.price+
-                    "</td><td>" +item.unit+
-                    "</td><td>" +item.count+
-                    "</td><td>" +item.subtotalstr+
-                    "</td></tr>";
-            }
-
-        });
-        $(".promotionlist").append(promotion_commodity_output());
-        $(".subtotal").html(subtotal_string());
-        console.log(judge_exist_savemoney() )
-        if(judge_exist_savemoney() ==true){
-            $(".savemoney").html(savemoney_string());
-            $(".actualpayment").html(actualpayment_string());
-        }
-        return body_string;
-    }
-
-}
 
 function promotion_commodity_frame_output(){
 
@@ -189,9 +197,6 @@ function promotion_commodity_output(){
     });
     return mainbody_strings;
 }
-
-
-
 
 
 function judge_exist_promotion_commodity() {
