@@ -71,9 +71,9 @@ $(function(){
 });
 
 var cart_items = build_cart_items_from_inputs();
-//var purchase_classify_by_category =classify_by_category(build_cart_items_from_inputs());
 sessionStorage.setItem("commodity_cart_items",JSON.stringify(cart_items));
-//sessionStorage.setItem("category_purchase_list",JSON.stringify(purchase_classify_by_category));
+var purchase_classify_by_category =classify_by_category(build_cart_items_from_inputs());
+sessionStorage.setItem("category_purchase_list",JSON.stringify(purchase_classify_by_category));
 
 
 function commdity_table_mainbody_output(classify){
