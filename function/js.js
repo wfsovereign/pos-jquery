@@ -1,7 +1,18 @@
 /**
  * Created by wfsovereign on 14-11-17.
  */
+var inp=['1236','1234','1231','1235'];
+sessionStorage.setItem("inputs",JSON.stringify(inp));
+var result = JSON.parse(sessionStorage.getItem("inputs"));
 
-var a={bar:"水果"};
-var b= "水果";
-console.log(a.bar==b);
+console.log(result);
+var count = 0;
+var mark = _.find(inp,function(i){
+    count+=1;
+    if(i =='1231'){
+        return count;
+    }
+});
+console.log(count)
+inp.splice(count-1,1);
+console.log(inp,"====");
