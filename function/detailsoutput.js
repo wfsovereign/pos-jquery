@@ -4,8 +4,6 @@ $(function () {
   $(".commodity_list").append(main_body_output());
   $(".shopcart_num").html(sessionStorage.getItem("shopcart_number"));
   $(".confirm-payment").click(reset_shopcart());
-  //$(".details").append(promotion_commodity_frame_output());
-  // $(".promotionlist").append(promotion_commodity_output());
 });
 
 function reset_shopcart() {
