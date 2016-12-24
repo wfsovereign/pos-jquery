@@ -11,22 +11,21 @@ function reset_shopcart() {
 }
 
 function main_body_output() {
-  if (judge_exist_promotion_commodity() == false) {
-    var mainbody_string;
-    mainbody_string = not_promotion_commodity_output();
-    $(".subtotal").html(subtotal_string());
-    return mainbody_string;
-  } else {
+  var $subtotal = $(".subtotal");
+  var main_body_string;
+  if (judge_exist_promotion_commodity()) {
     rich_promotion_purchase_commodity();
-    var body_string = promotion_after_purchase_commodity_output();
-    $(".subtotal").html(subtotal_string());
-    if (judge_exist_savemoney() == true) {
+    main_body_string = promotion_after_purchase_commodity_output();
+    if (judge_exist_savemoney()) {
       $(".details").append(promotion_commodity_frame_output());
       $(".promotionlist").append(promotion_commodity_output());
       $(".savemoney").html(savemoney_string());
       $(".actualpayment").html(actualpayment_string());
+    } else {
+      main_body_string = not_promotion_commodity_output();
     }
-    return body_string;
+    $subtotal.html(subtotal_string());
+    return main_body_string;
   }
 }
 
