@@ -10,3 +10,7 @@ POS
 
 * JQuery
 * Bootstrap
+
+## Usage
+
+浏览器直接打开home.html文件
