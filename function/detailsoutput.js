@@ -170,7 +170,7 @@ function judge_exist_promotion_commodity() {
   var promote = loadPromotions();
   var judge_item_belong_promote = [];
   _.each(cart_items, function (item) {
-    judge_item_belong_promote.push(judge_exist_barcode(item, promote))
+    judge_item_belong_promote.push(is_promotional_barcode(item, promote))
   });
   var item_truth = _.find(judge_item_belong_promote, function (truth) {
     if (truth == true) {
@@ -181,16 +181,10 @@ function judge_exist_promotion_commodity() {
   return item_truth != undefined
 }
 
-function judge_exist_barcode(item, promote) {
-  var judge_bar;
-  _.each(promote, function (pro) {
-    judge_bar = _.find(pro.barcodes, function (p) {
-      if (p == item.barcode) {
-        return p;
-      }
-    });
+function is_promotional_barcode(item, promotions) {
+  return _.some(promotions, function (promotion) {
+      return _.include(promotion.barcodes, item.barcode);
   });
-  return judge_bar != undefined
 }
 
 function add_preferential_information_to_item(item) {
