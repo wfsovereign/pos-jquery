@@ -167,18 +167,9 @@ function promotion_commodity_output() {
 
 
 function judge_exist_promotion_commodity() {
-  var promote = loadPromotions();
-  var judge_item_belong_promote = [];
-  _.each(cart_items, function (item) {
-    judge_item_belong_promote.push(is_promotional_barcode(item, promote))
+  return _.some(cart_items, function (item) {
+    return is_promotional_barcode(item, loadPromotions());
   });
-  var item_truth = _.find(judge_item_belong_promote, function (truth) {
-    if (truth == true) {
-      return true
-    }
-  });
-
-  return item_truth != undefined
 }
 
 function is_promotional_barcode(item, promotions) {
