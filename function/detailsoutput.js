@@ -168,11 +168,11 @@ function promotion_commodity_output() {
 
 function judge_exist_promotion_commodity() {
   return _.some(cart_items, function (item) {
-    return is_promotional_barcode(item, loadPromotions());
+    return has_promotional_barcode(item, loadPromotions());
   });
 }
 
-function is_promotional_barcode(item, promotions) {
+function has_promotional_barcode(item, promotions) {
   return _.some(promotions, function (promotion) {
       return _.include(promotion.barcodes, item.barcode);
   });
